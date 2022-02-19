@@ -1,0 +1,34 @@
+package com.proboost.proboostproject.Modules;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Data;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+
+@Entity
+@Data
+public class QCM {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    private String titre;
+
+    private int temp;
+
+    private int score;
+
+    @OneToMany(mappedBy = "qcm",cascade = CascadeType.REMOVE)
+    private List<Question> questions=new ArrayList();
+
+    @OneToOne(mappedBy = "qcm")
+    @JsonIgnore
+    private Entretien entretien;
+
+
+
+
+}

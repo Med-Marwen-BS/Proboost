@@ -37,4 +37,8 @@ public class User {
     @JsonIgnore
     private List<Offre_Emploi> offres=new ArrayList<Offre_Emploi>();
 
+    @OneToMany(mappedBy = "recruteur")
+    @JsonIgnore
+    private List<Entretien> entretiens=new ArrayList();
+
 }
