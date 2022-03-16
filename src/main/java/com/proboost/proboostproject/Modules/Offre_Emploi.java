@@ -16,11 +16,21 @@ public class Offre_Emploi {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private String titre;
+    private String title;
 
     private String description;
 
-    private LocalDate deadline;
+    private LocalDate postedDate;
+
+    private String jobeType ;
+
+    private String location ;
+
+    private int experience ;
+
+    private int salary  ;
+
+    private int vacancy;
 
     @ManyToOne
     private User recruteur;
