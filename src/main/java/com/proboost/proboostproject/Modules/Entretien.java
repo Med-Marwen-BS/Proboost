@@ -4,6 +4,8 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
@@ -22,10 +24,12 @@ public class Entretien {
     @ManyToOne
     private User recruteur;
 
-    @OneToOne
-    private QCM qcm;
+    @OneToMany(mappedBy = "entretien")
+    private List<QCM> qcm=new ArrayList<>();
 
     @OneToOne
     private Interview interview;
+
+
 
 }

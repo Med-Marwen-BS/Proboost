@@ -36,4 +36,10 @@ public class QuestionController {
     {
         return questionService.getall();
     }
+
+    @GetMapping("/getbyqcm/{id}")
+    public List<Question> getbyqcm(@PathVariable("id") int id)
+    {
+        return questionService.getByqcm(id);
+    }
 }

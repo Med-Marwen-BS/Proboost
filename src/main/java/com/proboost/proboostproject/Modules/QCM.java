@@ -22,12 +22,16 @@ public class QCM {
     private int score;
 
     @OneToMany(mappedBy = "qcm",cascade = CascadeType.REMOVE)
+    @JsonIgnore
     private List<Question> questions=new ArrayList();
 
-    @OneToOne(mappedBy = "qcm")
+    @ManyToOne
     @JsonIgnore
     private Entretien entretien;
 
+    @OneToOne(mappedBy = "qcm")
+    @JsonIgnore
+    private Records records;
 
 
 
