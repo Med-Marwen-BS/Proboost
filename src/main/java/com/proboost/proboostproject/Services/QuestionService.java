@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class QuestionService {
 
+
     private QuestionRepo questionRepo;
 
     public Question add(Question question)
@@ -32,22 +33,11 @@ public class QuestionService {
         {
             question.setQuestion(question.getQuestion());
         }
-        if(question.getAnswer()!=null)
+        if(question.getCorrectanswer()!=null)
         {
-            original.setAnswer(question.getAnswer());
+            original.setCorrectanswer(question.getCorrectanswer());
         }
-        if(question.getReponseA()!=null)
-        {
-            original.setReponseA(question.getReponseA());
-        }
-        if(question.getReponseB()!=null)
-        {
-            original.setReponseB(question.getReponseB());
-        }
-        if(question.getReponseC()!=null)
-        {
-            original.setReponseC(question.getReponseC());
-        }
+
         questionRepo.save(original);
         return original;
     }
@@ -55,5 +45,10 @@ public class QuestionService {
     public List<Question> getall()
     {
         return questionRepo.findAll();
+    }
+
+    public List<Question> getByqcm(int id)
+    {
+        return questionRepo.findAll().stream().filter(q -> q.getQcm().getId()==id).collect(Collectors.toList());
     }
 }
