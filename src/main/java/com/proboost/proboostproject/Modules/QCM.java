@@ -29,10 +29,13 @@ public class QCM {
     @JsonIgnore
     private Entretien entretien;
 
-    @OneToOne(mappedBy = "qcm")
+    @OneToMany(mappedBy = "qcm")
     @JsonIgnore
-    private Records records;
+    private List<Records> records=new ArrayList<>();
 
 
+    @OneToMany(mappedBy = "qcm")
+    @JsonIgnore
+    private List<Cheaters> cheaters=new ArrayList<>();
 
 }

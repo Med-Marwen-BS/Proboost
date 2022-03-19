@@ -19,6 +19,6 @@ public class Records {
 
     private String score;
 
-    @OneToOne
+    @ManyToOne
     private QCM qcm;
 }
