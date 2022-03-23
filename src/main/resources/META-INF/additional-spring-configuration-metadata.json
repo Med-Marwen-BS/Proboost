@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "srping.jpa.database-platform",
+      "type": "java.lang.String",
+      "description": "Description for srping.jpa.database-platform."
+  }
+] }
