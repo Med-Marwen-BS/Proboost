@@ -1,7 +1,9 @@
 package com.proboost.proboostproject.Modules;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,16 +17,18 @@ import java.util.List;
 
 @Entity
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(unique = true,nullable = false)
+    //@Column(unique = true,nullable = false)
     private String email ;
 
-    private String username;
+
 
     private String nom;
 
@@ -53,24 +57,25 @@ public class User implements UserDetails {
     private List<Entretien> entretiens=new ArrayList();
 
 
-    public User(String email,
-                String username, String nom,
-                String prenom, String password,
-                LocalDate naissance, Boolean locked,
-                Boolean enabled, Role role, List<Candidature> candidatures,
-                List<Offre_Emploi> offres, List<Entretien> entretiens) {
+    public User(String prenom, String nom,
+                String email, String password, Role role) {
         this.email = email;
-        this.username = username;
+
         this.nom = nom;
         this.prenom = prenom;
         this.password = password;
-        this.naissance = naissance;
-        this.locked = locked;
-        this.enabled = enabled;
+
+
         this.role = role;
-        this.candidatures = candidatures;
-        this.offres = offres;
-        this.entretiens = entretiens;
+
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     @Override
@@ -83,6 +88,11 @@ public class User implements UserDetails {
     @Override
     public String getPassword() {
         return password;
+    }
+
+    @Override
+    public String getUsername() {
+        return email;
     }
 
     @Override
