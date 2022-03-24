@@ -46,8 +46,25 @@ public class UserService implements UserDetailsService {
         if (userExists) {
             // TODO check of attributes are the same and
             // TODO if email not confirmed send confirmation email.
+            if(appUser.getEnabled())
+                throw new IllegalStateException("email already taken");
+            else {
+                String token = UUID.randomUUID().toString();
 
-            throw new IllegalStateException("email already taken");
+                ConfirmationToken confirmationToken = new ConfirmationToken(
+                        token,
+                        LocalDateTime.now(),
+                        LocalDateTime.now().plusMinutes(15),
+                        userRepo.findByEmail(appUser.getEmail()).get()
+                );
+//
+                confirmationTokenService.saveConfirmationToken(
+                        confirmationToken);
+
+//        TODO: SEND EMAIL
+
+                return "this is the new Token :"+token;
+            }
         }
 
         String encodedPassword = bCryptPasswordEncoder
