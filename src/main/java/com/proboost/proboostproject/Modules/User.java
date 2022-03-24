@@ -38,7 +38,7 @@ public class User implements UserDetails {
 
     private LocalDate naissance;
     private Boolean locked = false;
-    private Boolean enabled;
+    private Boolean enabled= false;
 
     @Enumerated(EnumType.STRING)
     private Role role;

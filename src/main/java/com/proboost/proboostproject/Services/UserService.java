@@ -49,8 +49,8 @@ public class UserService implements UserDetailsService {
                 .encode(appUser.getPassword());
 
       // appUser.setPassword(encodedPassword);
-        User test = new User(appUser.getPrenom(),appUser.getPrenom(), appUser.getEmail(), "123456", Role.USER);
-        test.setPassword(encodedPassword);
+        User test = new User(appUser.getPrenom(),appUser.getNom(), appUser.getEmail(), encodedPassword, Role.USER);
+       // test.setPassword(encodedPassword);
         userRepo.save(test);
 //
 //        String token = UUID.randomUUID().toString();
