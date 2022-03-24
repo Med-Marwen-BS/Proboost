@@ -3,6 +3,8 @@ package com.proboost.proboostproject.Services;
 import com.proboost.proboostproject.Modules.Role;
 import com.proboost.proboostproject.Modules.User;
 import com.proboost.proboostproject.Respositories.UserRepo;
+import com.proboost.proboostproject.registration.token.ConfirmationToken;
+import com.proboost.proboostproject.registration.token.ConfirmationTokenService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,13 +14,16 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.util.UUID;
+
 @Service
 @AllArgsConstructor
 public class UserService implements UserDetailsService {
 
     private final UserRepo userRepo ;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
-    //private final ConfirmationTokenService confirmationTokenService;
+    private final ConfirmationTokenService confirmationTokenService;
 
     private final static String USER_NOT_FOUND_MSG =
             "user with email %s not found";
@@ -53,23 +58,23 @@ public class UserService implements UserDetailsService {
        // test.setPassword(encodedPassword);
         userRepo.save(test);
 //
-//        String token = UUID.randomUUID().toString();
+        String token = UUID.randomUUID().toString();
+
+        ConfirmationToken confirmationToken = new ConfirmationToken(
+                token,
+                LocalDateTime.now(),
+                LocalDateTime.now().plusMinutes(15),
+                test
+        );
 //
-//        ConfirmationToken confirmationToken = new ConfirmationToken(
-//                token,
-//                LocalDateTime.now(),
-//                LocalDateTime.now().plusMinutes(15),
-//                appUser
-//        );
-//
-//        confirmationTokenService.saveConfirmationToken(
-//                confirmationToken);
+        confirmationTokenService.saveConfirmationToken(
+                confirmationToken);
 
 //        TODO: SEND EMAIL
 
-        //return token;
+        return token;
         //return new ResponseEntity<User>(appUser, HttpStatus.CREATED);
-        return "it works" ;
+        //return "it works" ;
     }
 
     public int enableAppUser(String email) {
