@@ -62,7 +62,7 @@ public class UserService implements UserDetailsService {
 
 //        TODO: SEND EMAIL
 
-                return "this is the new Token :"+token;
+                return token;
             }
         }
 
