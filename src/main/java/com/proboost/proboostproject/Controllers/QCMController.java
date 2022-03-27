@@ -5,6 +5,8 @@ import com.proboost.proboostproject.Services.QCMService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @AllArgsConstructor
 @RequestMapping("/qcm")
@@ -28,6 +30,12 @@ public class QCMController {
     public QCM get(@PathVariable("id") int id)
     {
         return qcmService.get(id);
+    }
+
+    @GetMapping("/all")
+    public List<QCM> getall()
+    {
+        return qcmService.getall();
     }
 
     @DeleteMapping("/delete/{id}")

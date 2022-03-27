@@ -6,6 +6,8 @@ import com.proboost.proboostproject.Respositories.QCMRepo;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @AllArgsConstructor
 public class QCMService {
@@ -43,5 +45,9 @@ public class QCMService {
         return "QCM Supprimée";
     }
 
+    public List<QCM> getall()
+    {
+        return qcmRepo.findAll();
+    }
 
 }
