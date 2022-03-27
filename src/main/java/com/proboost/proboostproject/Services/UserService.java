@@ -48,6 +48,9 @@ public class UserService implements UserDetailsService {
             if(appUser.getEnabled())
                 throw new IllegalStateException("email already taken");
             else {
+
+                if(userRepo.findByEmail(appUser.getEmail()).get().getEnabled())
+                    throw new IllegalStateException("email already taken");
                 String token = UUID.randomUUID().toString();
 
                 ConfirmationToken confirmationToken = new ConfirmationToken(
