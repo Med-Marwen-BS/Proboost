@@ -5,7 +5,9 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -20,7 +22,9 @@ public class Offre_Emploi {
 
     private String description;
 
-    private LocalDate postedDate;
+    private LocalDateTime postedDate;
+
+    private LocalDateTime deadline ;
 
     private String jobeType ;
 

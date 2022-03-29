@@ -27,10 +27,23 @@ public class OffreConroller {
         return offreService.getall();
     }
 
-    @DeleteMapping("/delete/{id}")
+    @GetMapping("/{id}")
+    public Offre_Emploi get(@PathVariable("id") int id){
+        return offreService.getOffre( id);
+    }
+
+    @DeleteMapping("/{id}")
     public String delete(@PathVariable("id") int id)
     {
         return offreService.delete(id);
     }
+
+//    public Offre_Emploi update(@RequestBody Offre_Emploi offreEmploi){return offreService.update(offreEmploi);}
+    @PutMapping("")
+   public Offre_Emploi update(@RequestBody Offre_Emploi offreEmploi)
+   {
+       return offreService.update(offreEmploi);
+   }
+
 
 }
