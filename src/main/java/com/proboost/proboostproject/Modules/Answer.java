@@ -1,5 +1,6 @@
 package com.proboost.proboostproject.Modules;
 
+import com.fasterxml.jackson.annotation.JsonFilter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
@@ -18,4 +19,7 @@ public class Answer {
     @ManyToOne
     @JsonIgnore
     private Question question;
+
+
+
 }

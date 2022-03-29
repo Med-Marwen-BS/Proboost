@@ -51,4 +51,9 @@ public class QuestionService {
     {
         return questionRepo.findAll().stream().filter(q -> q.getQcm().getId()==id).collect(Collectors.toList());
     }
+
+    public Question getonequestion(int id)
+    {
+        return questionRepo.findById(id).get();
+    }
 }

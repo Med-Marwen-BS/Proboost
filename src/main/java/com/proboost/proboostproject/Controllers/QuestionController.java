@@ -19,6 +19,7 @@ public class QuestionController {
     {
         return questionService.add(question);
     }
+
     @DeleteMapping("/delete/{id}")
     public String delete(@PathVariable("id") int id)
     {
@@ -41,5 +42,11 @@ public class QuestionController {
     public List<Question> getbyqcm(@PathVariable("id") int id)
     {
         return questionService.getByqcm(id);
+    }
+
+    @GetMapping("/getone/{id}")
+    public Question getone(@PathVariable("id") int id)
+    {
+        return questionService.getonequestion(id);
     }
 }

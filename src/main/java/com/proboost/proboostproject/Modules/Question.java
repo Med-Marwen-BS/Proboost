@@ -17,7 +17,7 @@ public class Question {
 
     private String question;
 
-    @OneToMany(mappedBy = "question")
+    @OneToMany(mappedBy = "question",cascade = CascadeType.REMOVE)
     private List<Answer> answers = new ArrayList();
 
     private String correctanswer;
