@@ -29,7 +29,7 @@ public class OffreConroller {
 
     @GetMapping("/{id}")
     public Offre_Emploi get(@PathVariable("id") int id){
-        return offreService.getOffre( id);
+        return offreService.getOffre(id);
     }
 
     @DeleteMapping("/{id}")

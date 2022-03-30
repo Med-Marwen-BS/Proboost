@@ -27,7 +27,7 @@ public class OffreService {
     }
 
     public Offre_Emploi getOffre( int id) {
-        return offreRepo.getById(id);
+        return offreRepo.findById(id).get();
     }
 
     public String delete(int id)
