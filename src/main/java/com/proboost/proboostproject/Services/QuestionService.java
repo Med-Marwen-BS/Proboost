@@ -1,6 +1,8 @@
 package com.proboost.proboostproject.Services;
 
+import com.proboost.proboostproject.Modules.Answer;
 import com.proboost.proboostproject.Modules.Question;
+import com.proboost.proboostproject.Respositories.AnswerRepo;
 import com.proboost.proboostproject.Respositories.QuestionRepo;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,9 +17,16 @@ public class QuestionService {
 
     private QuestionRepo questionRepo;
 
+    private AnswerRepo answerRepo;
+
     public Question add(Question question)
     {
-        return questionRepo.save(question);
+        Answer answer=new Answer();
+        answer.setText(question.getCorrectanswer());
+        Question savedquestion= questionRepo.save(question);
+        answer.setQuestion(savedquestion);
+        answerRepo.save(answer);
+        return savedquestion;
     }
 
     public String delete(int id)
@@ -55,5 +64,12 @@ public class QuestionService {
     public Question getonequestion(int id)
     {
         return questionRepo.findById(id).get();
+    }
+
+    public void updatecorrectanswer(int id,Answer answer)
+    {
+        Question question=questionRepo.findById(id).get();
+        question.setCorrectanswer(answer.getText());
+        questionRepo.save(question);
     }
 }

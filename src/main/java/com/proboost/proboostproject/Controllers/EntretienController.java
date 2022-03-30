@@ -38,4 +38,10 @@ public class EntretienController {
         return entretienService.update(entretien,id);
     }
 
+    @GetMapping("/getbyrecruter/{id}")
+    public List<Entretien> getbyrecruter(@PathVariable("id")int id)
+    {
+        return entretienService.getbyrecruter(id);
+    }
+
 }

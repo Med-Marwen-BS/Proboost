@@ -1,5 +1,6 @@
 package com.proboost.proboostproject.Controllers;
 
+import com.proboost.proboostproject.Modules.Answer;
 import com.proboost.proboostproject.Modules.Question;
 import com.proboost.proboostproject.Services.QuestionService;
 import lombok.AllArgsConstructor;
@@ -48,5 +49,11 @@ public class QuestionController {
     public Question getone(@PathVariable("id") int id)
     {
         return questionService.getonequestion(id);
+    }
+
+    @PostMapping("/updatecorrectanswer/{id}")
+    public void updatecorrectanswer(@PathVariable("id") int id, @RequestBody Answer answer)
+    {
+        questionService.updatecorrectanswer(id,answer);
     }
 }

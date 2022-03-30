@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,8 +22,15 @@ public class Entretien {
 
     private String type;
 
+    private Integer hour;
+
+    private Integer minute;
+
     @ManyToOne
     private User recruteur;
+
+    @ManyToOne
+    private User candidat;
 
     @OneToMany(mappedBy = "entretien")
     private List<QCM> qcm=new ArrayList<>();

@@ -53,4 +53,9 @@ public class EntretienService {
         entretienRepo.save(original);
         return original;
     }
+
+    public List<Entretien> getbyrecruter(int id)
+    {
+        return entretienRepo.findAll().stream().filter(e -> e.getRecruteur().getId()==id).collect(Collectors.toList());
+    }
 }
