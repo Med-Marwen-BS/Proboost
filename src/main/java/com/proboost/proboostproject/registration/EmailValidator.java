@@ -11,11 +11,11 @@ public class EmailValidator implements Predicate<String> {
     @Override
     public boolean test(String s) {
 //        TODO: Regex to validate email
-     /**   String regex = "^[A-Za-z0-9+_.-]+@(.+)$";
+        String regex = "^[A-Za-z0-9_.-]+@(.+)$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(s);
 
-        return matcher.matches();*/
-        return true ;
+        return matcher.matches();
+       // return true ;
     }
 }
