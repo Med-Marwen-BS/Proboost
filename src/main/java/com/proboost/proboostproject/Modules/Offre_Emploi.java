@@ -26,7 +26,7 @@ public class Offre_Emploi {
 
     private String Education ;
 
-    private LocalDateTime postedDate;
+    private LocalDate postedDate;
 
     private LocalDate deadline ;
 

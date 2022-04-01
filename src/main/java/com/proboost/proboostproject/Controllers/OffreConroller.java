@@ -45,5 +45,18 @@ public class OffreConroller {
        return offreService.update(offreEmploi);
    }
 
+   @GetMapping("/salary/{min}/{max}")
+   public List<Offre_Emploi>  SalarySearch(@PathVariable("min") int min , @PathVariable("max") int max ){
+        System.out.println("cc");
+     return offreService.offreSalaryRange(min, max);
+
+    }
+
+    @GetMapping("maxSalary")
+    public int maxSalary(){ return offreService.maxSalary();}
+
+    @GetMapping("minSalary")
+    public int minSalary(){ return offreService.minSalary();}
+
 
 }
