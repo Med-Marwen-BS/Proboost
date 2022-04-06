@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -17,7 +18,7 @@ public class OffreService {
 
     public Offre_Emploi add(Offre_Emploi offreEmploi)
     {
-        offreEmploi.setPostedDate(LocalDateTime.now());
+        offreEmploi.setPostedDate(LocalDate.now());
         return offreRepo.save(offreEmploi);
     }
 
@@ -27,7 +28,7 @@ public class OffreService {
     }
 
     public Offre_Emploi getOffre( int id) {
-        return offreRepo.getById(id);
+        return offreRepo.findById(id).get();
     }
 
     public String delete(int id)
@@ -49,5 +50,34 @@ public class OffreService {
         return offreRepo.save(offreEmploi);
     }
 
+    public int maxSalary(){
+       int max=0;
+        List<Offre_Emploi> offers =  offreRepo.findAll();
+        for(Offre_Emploi off:offers){
+            if(off.getSalary()>max)
+                max=off.getSalary();
+        }
 
+            return max;
+    }
+
+
+    public int minSalary(){
+
+        List<Offre_Emploi> offers =  offreRepo.findAll();
+        int min=maxSalary();
+        for(Offre_Emploi off:offers){
+            if(off.getSalary()<min)
+                min=off.getSalary();
+        }
+
+        return min;
+    }
+
+    public List<Offre_Emploi> offreSalaryRange( int min , int max){
+        List<Offre_Emploi> offers =  offreRepo.findAll();
+      List<Offre_Emploi> result=  offers.stream().filter(off-> off.getSalary()>=min && off.getSalary() <= max).collect(Collectors.toList());
+
+    return result;
+    }
 }

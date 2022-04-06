@@ -22,9 +22,13 @@ public class Offre_Emploi {
 
     private String description;
 
-    private LocalDateTime postedDate;
+    private String RequiredKnowledge ;
 
-    private LocalDateTime deadline ;
+    private String Education ;
+
+    private LocalDate postedDate;
+
+    private LocalDate deadline ;
 
     private String jobeType ;
 
@@ -35,6 +39,8 @@ public class Offre_Emploi {
     private int salary  ;
 
     private int vacancy;
+
+
 
     @ManyToOne
     private User recruteur;
