@@ -45,4 +45,7 @@ public class User {
     @JsonIgnore
     private List<Entretien> entretiensCandidat=new ArrayList<>();
 
+    @OneToMany(mappedBy = "createur")
+    @JsonIgnore
+    private List<QCM> qcmList=new ArrayList<>();
 }

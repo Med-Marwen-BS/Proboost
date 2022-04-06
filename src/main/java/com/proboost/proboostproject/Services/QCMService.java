@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -50,4 +51,8 @@ public class QCMService {
         return qcmRepo.findAll();
     }
 
+    public List<QCM> getbycreator(int id)
+    {
+        return qcmRepo.findAll().stream().filter(c -> c.getCreateur().getId()==id).collect(Collectors.toList());
+    }
 }

@@ -43,4 +43,10 @@ public class QCMController {
     {
         return qcmService.delete(id);
     }
+
+    @GetMapping("/getbycreator/{id}")
+    public List<QCM> getbycreator(@PathVariable("id") int id)
+    {
+        return qcmService.getbycreator(id);
+    }
 }

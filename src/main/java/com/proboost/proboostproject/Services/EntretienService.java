@@ -58,4 +58,9 @@ public class EntretienService {
     {
         return entretienRepo.findAll().stream().filter(e -> e.getRecruteur().getId()==id).collect(Collectors.toList());
     }
+
+    public int quiznumber(int id)
+    {
+        return entretienRepo.findById(id).get().getQcm().size();
+    }
 }

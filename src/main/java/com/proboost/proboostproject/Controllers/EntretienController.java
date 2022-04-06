@@ -44,4 +44,10 @@ public class EntretienController {
         return entretienService.getbyrecruter(id);
     }
 
+    @GetMapping("/getquiznumber/{id}")
+    public int getquiznumber(@PathVariable("id")int id)
+    {
+        return entretienService.quiznumber(id);
+    }
+
 }

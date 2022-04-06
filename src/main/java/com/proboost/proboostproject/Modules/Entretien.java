@@ -1,5 +1,6 @@
 package com.proboost.proboostproject.Modules;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -32,7 +33,8 @@ public class Entretien {
     @ManyToOne
     private User candidat;
 
-    @OneToMany(mappedBy = "entretien")
+    @ManyToMany(mappedBy = "entretiens")
+    @JsonIgnore
     private List<QCM> qcm=new ArrayList<>();
 
     @OneToOne

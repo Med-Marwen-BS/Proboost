@@ -25,9 +25,8 @@ public class QCM {
     @JsonIgnore
     private List<Question> questions=new ArrayList();
 
-    @ManyToOne
-    @JsonIgnore
-    private Entretien entretien;
+    @ManyToMany
+    private List<Entretien> entretiens=new ArrayList<>();
 
     @OneToMany(mappedBy = "qcm")
     @JsonIgnore
@@ -38,4 +37,6 @@ public class QCM {
     @JsonIgnore
     private List<Cheaters> cheaters=new ArrayList<>();
 
+    @ManyToOne
+    private User createur;
 }
