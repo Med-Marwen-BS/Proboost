@@ -1,6 +1,7 @@
 package com.proboost.proboostproject.Controllers;
 
 import com.proboost.proboostproject.Modules.Entretien;
+import com.proboost.proboostproject.Modules.QCM;
 import com.proboost.proboostproject.Services.EntretienService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -50,4 +51,15 @@ public class EntretienController {
         return entretienService.quiznumber(id);
     }
 
+    @GetMapping("/getqcmbyentretien/{id}")
+    public List<QCM> getqcmbyentretien(@PathVariable("id") int id)
+    {
+        return entretienService.getqcmbyentretien(id);
+    }
+
+    @DeleteMapping("/deleteqcm/{entretien_id}/{qcm_id}")
+    public void deleteqcm(@PathVariable("entretien_id")int entretien_id,@PathVariable("qcm_id")int qcm_id)
+    {
+        entretienService.deleteqcm(entretien_id,qcm_id);
+    }
 }
