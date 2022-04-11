@@ -1,6 +1,8 @@
 package com.proboost.proboostproject.registration;
 
 import lombok.AllArgsConstructor;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -11,7 +13,9 @@ public class RegistrationController {
     private final RegistrationService registrationService;
 
     @PostMapping
-    public String register(@RequestBody RegistrationRequest request) {
+//    @RequestMapping(value = "", method = RequestMethod.POST,
+//            produces = MediaType.APPLICATION_JSON_VALUE)
+    public Object register(@RequestBody RegistrationRequest request) {
         return registrationService.register(request);
     }
 

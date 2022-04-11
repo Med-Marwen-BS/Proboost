@@ -10,6 +10,7 @@ import com.proboost.proboostproject.registration.email.EmailSender;
 import com.proboost.proboostproject.registration.token.ConfirmationToken;
 import com.proboost.proboostproject.registration.token.ConfirmationTokenService;
 import lombok.AllArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,7 +25,7 @@ public class RegistrationService {
     private final ConfirmationTokenService confirmationTokenService;
     private final EmailSender emailSender;
 
-    public String register(RegistrationRequest request) {
+    public tokenResponse register(RegistrationRequest request) {
         boolean isValidEmail = emailValidator.
                 test(request.getEmail());
 
@@ -48,7 +49,7 @@ public class RegistrationService {
                 request.getEmail(),
                 buildEmail(request.getFirstName(), link));
 
-        return token;
+        return new tokenResponse(token);
     }
 
     @Transactional
@@ -141,5 +142,20 @@ public class RegistrationService {
                 "  </tbody></table><div class=\"yj6qo\"></div><div class=\"adL\">\n" +
                 "\n" +
                 "</div></div>";
+    }
+}
+
+class tokenResponse{
+    private String  token ;
+    public tokenResponse(String token){
+        this.token = token ;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 }
