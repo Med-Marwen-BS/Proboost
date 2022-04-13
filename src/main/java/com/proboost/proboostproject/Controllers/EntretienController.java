@@ -62,4 +62,10 @@ public class EntretienController {
     {
         entretienService.deleteqcm(entretien_id,qcm_id);
     }
+
+    @GetMapping("/getbycandidat/{id}")
+    public List<Entretien> getbycandidat(@PathVariable("id")int id)
+    {
+        return entretienService.getbycandidat(id);
+    }
 }

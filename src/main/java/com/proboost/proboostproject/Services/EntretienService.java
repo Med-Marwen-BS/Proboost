@@ -85,4 +85,9 @@ public class EntretienService {
         entretienRepo.save(entretien);
         qcmRepo.save(qcm);
     }
+
+    public List<Entretien> getbycandidat(int id)
+    {
+        return entretienRepo.findAll().stream().filter(e -> e.getCandidat().getId()==id).collect(Collectors.toList());
+    }
 }
