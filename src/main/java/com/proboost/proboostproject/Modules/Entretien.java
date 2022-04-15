@@ -40,6 +40,8 @@ public class Entretien {
     @OneToOne
     private Interview interview;
 
-
+    @OneToMany(mappedBy = "entretien")
+    @JsonIgnore
+    private List<Records> records=new ArrayList<>();
 
 }

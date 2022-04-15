@@ -30,7 +30,14 @@ public class EntretienService {
 
     public String delete(int id)
     {
-        entretienRepo.delete(entretienRepo.findById(id).get());
+        Entretien entretien = entretienRepo.findById(id).get();
+        entretien.setQcm(null);
+        entretienRepo.save(entretien);
+        qcmRepo.findAll().stream().filter(q -> q.getEntretiens().contains(entretien)).map(q -> {
+                    q.getEntretiens().remove(entretien);return qcmRepo.save(q);
+                })
+                        .collect(Collectors.toList());
+        entretienRepo.delete(entretien);
         return "Entretien Supprimée";
     }
 

@@ -49,4 +49,10 @@ public class QCMController {
     {
         return qcmService.getbycreator(id);
     }
+
+    @GetMapping("/getnumberquestions/{id}")
+    public Integer getnumberquestions(@PathVariable("id")int id)
+    {
+        return qcmService.getnumberquestions(id);
+    }
 }

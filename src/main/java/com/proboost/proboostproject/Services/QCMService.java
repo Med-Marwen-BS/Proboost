@@ -55,4 +55,9 @@ public class QCMService {
     {
         return qcmRepo.findAll().stream().filter(c -> c.getCreateur().getId()==id).collect(Collectors.toList());
     }
+
+    public int getnumberquestions(int id)
+    {
+        return qcmRepo.findById(id).get().getQuestions().size();
+    }
 }
