@@ -4,10 +4,12 @@ package com.proboost.proboostproject.Controllers;
 import com.proboost.proboostproject.Modules.Offre_Emploi;
 import com.proboost.proboostproject.Services.OffreService;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@CrossOrigin("*")
 @RestController
 @AllArgsConstructor
 @RequestMapping("/offre")
@@ -22,9 +24,11 @@ public class OffreConroller {
     }
 
     @GetMapping("/all")
-    public List<Offre_Emploi> getall()
+    public ResponseEntity< List<Offre_Emploi>> getall()
     {
-        return offreService.getall();
+        System.out.println("it works offre");
+        return  new ResponseEntity<List<Offre_Emploi>>(offreService.getall(), HttpStatus.OK);
+
     }
 
     @DeleteMapping("/delete/{id}")

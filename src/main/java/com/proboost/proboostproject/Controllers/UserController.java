@@ -84,4 +84,9 @@ public class UserController {
 
          }
      }
+
+     @GetMapping("/users")
+    public List<User> getUSers(){
+         return userService.getUsers() ;
+     }
 }
