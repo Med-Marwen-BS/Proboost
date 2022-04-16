@@ -2,6 +2,7 @@ package com.proboost.proboostproject.Controllers;
 
 
 import com.proboost.proboostproject.Modules.Offre_Emploi;
+import com.proboost.proboostproject.Modules.cvFile;
 import com.proboost.proboostproject.Services.OffreService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -45,7 +46,14 @@ public class OffreConroller {
        return offreService.update(offreEmploi);
    }
 
-   @GetMapping("/salary/{min}/{max}")
+
+   @GetMapping("/{id}/CVs")
+   public List<cvFile> getOfferCVs(@PathVariable("id") int id){
+       return offreService.getOfferCVs(id);
+   }
+
+
+       @GetMapping("/salary/{min}/{max}")
    public List<Offre_Emploi>  SalarySearch(@PathVariable("min") int min , @PathVariable("max") int max ){
         System.out.println("cc");
      return offreService.offreSalaryRange(min, max);

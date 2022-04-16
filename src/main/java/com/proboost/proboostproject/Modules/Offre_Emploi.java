@@ -42,10 +42,18 @@ public class Offre_Emploi {
 
 
 
+
     @ManyToOne
     private User recruteur;
 
     @OneToMany(mappedBy = "offre")
     private List<Candidature> candidatures=new ArrayList<Candidature>();
+
+    @OneToMany(mappedBy = "offre", cascade = CascadeType.REMOVE)
+    @JsonIgnore
+    private List<cvFile> cvFiles = new ArrayList<>();
+
+
+
 
 }
