@@ -12,6 +12,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.servlet.FilterChain;
@@ -28,7 +29,7 @@ import static java.util.Arrays.stream;
 import static org.springframework.http.HttpHeaders.AUTHORIZATION;
 import static org.springframework.http.HttpStatus.FORBIDDEN;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
-
+@CrossOrigin("*")
 @Slf4j
 public class CustomAthorizationFilter extends OncePerRequestFilter {
 
@@ -38,7 +39,7 @@ public class CustomAthorizationFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         //||request.getServletPath().equals("/offre/all")
         //|| request.getServletPath().startsWith("/api/v1/registration")
-        if(request.getServletPath().equals("/login")  || request.getServletPath().equals("/api/users/refresh_token")  || request.getServletPath().startsWith("/") ){
+        if(request.getServletPath().equals("/login")  || request.getServletPath().equals("/api/users/refresh_token")  || request.getServletPath().startsWith("/api/v1/registration") ){
             String authotizationHeader = request.getHeader(AUTHORIZATION);
             System.out.println("no authorization header");
             if(authotizationHeader != null && authotizationHeader.startsWith("Bearer ")){
