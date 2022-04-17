@@ -1,8 +1,13 @@
 package com.proboost.proboostproject.Services;
 
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.JWTVerifier;
+import com.auth0.jwt.algorithms.Algorithm;
+import com.auth0.jwt.interfaces.DecodedJWT;
 import com.proboost.proboostproject.Modules.Role;
 import com.proboost.proboostproject.Modules.User;
 import com.proboost.proboostproject.Respositories.UserRepo;
+import com.proboost.proboostproject.filter.CurrentUser;
 import com.proboost.proboostproject.registration.token.ConfirmationToken;
 import com.proboost.proboostproject.registration.token.ConfirmationTokenService;
 import lombok.AllArgsConstructor;
@@ -16,6 +21,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+
+import static org.springframework.http.HttpHeaders.AUTHORIZATION;
 
 @Service
 @AllArgsConstructor
@@ -107,4 +114,18 @@ public class UserService implements UserDetailsService {
     public List<User> getUsers(){
         return userRepo.findAll() ;
     }
+
+    public User getCurrentUser(){
+//        Algorithm algorithm = Algorithm.HMAC256("secret".getBytes());
+//        JWTVerifier verifier = JWT.require(algorithm).build();
+//        DecodedJWT decodedJWT = verifier.verify(token);
+//        String username = decodedJWT.getSubject();
+//        if(userRepo.findByEmail(username).isPresent())
+//            return userRepo.findByEmail(username).get() ;
+//        else throw new UsernameNotFoundException("There is no user with this email");
+        if(!CurrentUser.username.equals(""))
+            return userRepo.findByEmail(CurrentUser.username).get();
+        else throw new IllegalStateException("you need to login ");
+    }
+
 }
