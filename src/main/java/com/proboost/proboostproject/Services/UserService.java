@@ -8,6 +8,7 @@ import com.proboost.proboostproject.Modules.Role;
 import com.proboost.proboostproject.Modules.User;
 import com.proboost.proboostproject.Respositories.UserRepo;
 import com.proboost.proboostproject.filter.CurrentUser;
+import com.proboost.proboostproject.filter.CustomAthorizationFilter;
 import com.proboost.proboostproject.registration.token.ConfirmationToken;
 import com.proboost.proboostproject.registration.token.ConfirmationTokenService;
 import lombok.AllArgsConstructor;
@@ -115,7 +116,7 @@ public class UserService implements UserDetailsService {
         return userRepo.findAll() ;
     }
 
-    public User getCurrentUser(){
+    public User getCurrentUser(String token){
 //        Algorithm algorithm = Algorithm.HMAC256("secret".getBytes());
 //        JWTVerifier verifier = JWT.require(algorithm).build();
 //        DecodedJWT decodedJWT = verifier.verify(token);
@@ -123,8 +124,9 @@ public class UserService implements UserDetailsService {
 //        if(userRepo.findByEmail(username).isPresent())
 //            return userRepo.findByEmail(username).get() ;
 //        else throw new UsernameNotFoundException("There is no user with this email");
-        if(!CurrentUser.username.equals(""))
-            return userRepo.findByEmail(CurrentUser.username).get();
+        String username = CustomAthorizationFilter.CurrentUser(token);
+        if(!username.equals(""))
+            return userRepo.findByEmail(username).get();
         else throw new IllegalStateException("you need to login ");
     }
 
