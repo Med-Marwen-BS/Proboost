@@ -39,24 +39,24 @@ public class OffreConroller {
         return offreService.delete(id);
     }
 
-//    public Offre_Emploi update(@RequestBody Offre_Emploi offreEmploi){return offreService.update(offreEmploi);}
+    //    public Offre_Emploi update(@RequestBody Offre_Emploi offreEmploi){return offreService.update(offreEmploi);}
     @PutMapping("")
-   public Offre_Emploi update(@RequestBody Offre_Emploi offreEmploi)
-   {
-       return offreService.update(offreEmploi);
-   }
+    public Offre_Emploi update(@RequestBody Offre_Emploi offreEmploi)
+    {
+        return offreService.update(offreEmploi);
+    }
 
 
-   @GetMapping("/{id}/CVs")
-   public List<cvFile> getOfferCVs(@PathVariable("id") int id){
-       return offreService.getOfferCVs(id);
-   }
+    @GetMapping("/{id}/CVs")
+    public List<cvFile> getOfferCVs(@PathVariable("id") int id){
+        return offreService.getOfferCVs(id);
+    }
 
 
-       @GetMapping("/salary/{min}/{max}")
-   public List<Offre_Emploi>  SalarySearch(@PathVariable("min") int min , @PathVariable("max") int max ){
+    @GetMapping("/salary/{min}/{max}")
+    public List<Offre_Emploi>  SalarySearch(@PathVariable("min") int min , @PathVariable("max") int max ){
         System.out.println("cc");
-     return offreService.offreSalaryRange(min, max);
+        return offreService.offreSalaryRange(min, max);
 
     }
 

@@ -34,6 +34,13 @@ public class cvFile {
         this.data = data;
     }
 
+    public cvFile(String fileName, String fileType, byte[] data, Offre_Emploi offre) {
+        this.fileName = fileName;
+        this.fileType = fileType;
+        this.data = data;
+        this.offre = offre;
+    }
+
     public String getId() {
         return id;
     }

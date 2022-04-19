@@ -51,14 +51,14 @@ public class OffreService {
         return offreRepo.findById(id).get().getCvFiles();   }
 
     public int maxSalary(){
-       int max=0;
+        int max=0;
         List<Offre_Emploi> offers =  offreRepo.findAll();
         for(Offre_Emploi off:offers){
             if(off.getSalary()>max)
                 max=off.getSalary();
         }
 
-            return max;
+        return max;
     }
 
 
@@ -76,8 +76,8 @@ public class OffreService {
 
     public List<Offre_Emploi> offreSalaryRange( int min , int max){
         List<Offre_Emploi> offers =  offreRepo.findAll();
-      List<Offre_Emploi> result=  offers.stream().filter(off-> off.getSalary()>=min && off.getSalary() <= max).collect(Collectors.toList());
+        List<Offre_Emploi> result=  offers.stream().filter(off-> off.getSalary()>=min && off.getSalary() <= max).collect(Collectors.toList());
 
-    return result;
+        return result;
     }
 }

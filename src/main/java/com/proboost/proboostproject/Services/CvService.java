@@ -19,15 +19,18 @@ public class CvService {
 
     @Autowired
     private CvRepo cvrepo;
+    private OffreService offreService;
 
-    public CvService(CvRepo cvrepo) {
+
+    public CvService(CvRepo cvrepo ,OffreService offreService) {
         this.cvrepo = cvrepo;
+        this.offreService=offreService;
     }
 
 
 
 
-    public cvFile saveFile(MultipartFile file) throws Exception {
+    public cvFile saveFile(MultipartFile file , int id) throws Exception {
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
         try {
             if(fileName.contains("..")) {
@@ -38,7 +41,9 @@ public class CvService {
             cvFile attachment
                     = new cvFile(fileName,
                     file.getContentType(),
-                    file.getBytes()
+                    file.getBytes(),
+                    offreService.getOffre(id)
+
             );
             return cvrepo.save(attachment);
 
