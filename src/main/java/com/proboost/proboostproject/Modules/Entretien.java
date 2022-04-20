@@ -44,4 +44,7 @@ public class Entretien {
     @JsonIgnore
     private List<Records> records=new ArrayList<>();
 
+    @OneToMany(mappedBy = "entretien")
+    @JsonIgnore
+    private List<Cheaters> cheaters=new ArrayList<>();
 }

@@ -1,5 +1,6 @@
 package com.proboost.proboostproject.Controllers;
 
+import com.proboost.proboostproject.Modules.Cheaters;
 import com.proboost.proboostproject.Modules.Entretien;
 import com.proboost.proboostproject.Modules.QCM;
 import com.proboost.proboostproject.Services.EntretienService;
@@ -67,5 +68,17 @@ public class EntretienController {
     public List<Entretien> getbycandidat(@PathVariable("id")int id)
     {
         return entretienService.getbycandidat(id);
+    }
+
+    @GetMapping("/getcheaters/{id}")
+    public List<Cheaters> getcheaters(@PathVariable("id") int id)
+    {
+        return entretienService.getcheaters(id);
+    }
+
+    @GetMapping("/verifycheaters/{id}")
+    public Boolean verifycheaters(@PathVariable("id")int id)
+    {
+        return entretienService.verifycheaters(id);
     }
 }

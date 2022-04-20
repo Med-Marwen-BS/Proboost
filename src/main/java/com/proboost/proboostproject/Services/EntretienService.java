@@ -1,5 +1,6 @@
 package com.proboost.proboostproject.Services;
 
+import com.proboost.proboostproject.Modules.Cheaters;
 import com.proboost.proboostproject.Modules.Entretien;
 import com.proboost.proboostproject.Modules.QCM;
 import com.proboost.proboostproject.Respositories.EntretienRepo;
@@ -96,5 +97,15 @@ public class EntretienService {
     public List<Entretien> getbycandidat(int id)
     {
         return entretienRepo.findAll().stream().filter(e -> e.getCandidat().getId()==id).collect(Collectors.toList());
+    }
+
+    public List<Cheaters> getcheaters(int id)
+    {
+        return entretienRepo.findById(id).get().getCheaters();
+    }
+
+    public Boolean verifycheaters(int id)
+    {
+        return entretienRepo.findById(id).get().getCheaters().size()!=0;
     }
 }

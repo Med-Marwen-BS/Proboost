@@ -1,5 +1,6 @@
 package com.proboost.proboostproject.Modules;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -18,4 +19,7 @@ public class Cheaters {
 
     @ManyToOne
     private QCM qcm;
+
+    @ManyToOne
+    private Entretien entretien;
 }
