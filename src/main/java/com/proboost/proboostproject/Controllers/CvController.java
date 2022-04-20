@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.servlet.http.HttpServletResponse;
 import java.awt.*;
 import java.util.stream.Collectors;
 
@@ -69,6 +70,19 @@ public class CvController {
     }
 
 
+    @GetMapping("/showFile/{fileId}")
+    public ResponseEntity<Resource> showFile(@PathVariable String fileId) throws Exception {
+        cvFile attachment = null;
+        attachment = cvservice.getFile(fileId);
+
+        return  ResponseEntity.ok()
+                .contentType(MediaType.parseMediaType(attachment.getFileType()))
+                .header(HttpHeaders.CONTENT_DISPOSITION,
+                        "inline; filename=\"" + attachment.getFileName()
+                                + "\"")
+                .body(new ByteArrayResource(attachment.getData()));
+    }
+
 
     @GetMapping("/files")
     public ResponseEntity<List<ResponseData>> getListFiles() {
@@ -87,5 +101,17 @@ public class CvController {
         return ResponseEntity.status(HttpStatus.OK).body(files);
     }
 
+
+
+@GetMapping("/fileName")
+    private List<String> getListOfFileNames() {
+        return  cvservice.getFileNames();
+    }
+
+    @GetMapping("/downloadZipFile")
+    public void downloadZipFile(HttpServletResponse response) {
+        List<String> listOfFileNames = getListOfFileNames();
+        cvservice.downloadZipFile(response, listOfFileNames);
+    }
 
 }
