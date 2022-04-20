@@ -48,4 +48,10 @@ public class User {
     @OneToMany(mappedBy = "createur")
     @JsonIgnore
     private List<QCM> qcmList=new ArrayList<>();
+
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "cv_id", referencedColumnName = "id")
+    private cvFile cvfile;
+
 }

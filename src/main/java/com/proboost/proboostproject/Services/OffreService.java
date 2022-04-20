@@ -1,6 +1,7 @@
 package com.proboost.proboostproject.Services;
 
 import com.proboost.proboostproject.Modules.Offre_Emploi;
+import com.proboost.proboostproject.Modules.cvFile;
 import com.proboost.proboostproject.Respositories.OffreRepo;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -38,27 +39,26 @@ public class OffreService {
         return "Offre Supprimée";
     }
 
- /*   public  Offre_Emploi update(Offre_Emploi newoffre )
-    {
-        return offreRepo.save(newoffre);
-    }*/
+
 
 
     public Offre_Emploi update(Offre_Emploi offreEmploi)
     {
-//        offreEmploi.setPostedDate(LocalDate.now());
         return offreRepo.save(offreEmploi);
     }
 
+    public List<cvFile> getOfferCVs(int id) {
+        return offreRepo.findById(id).get().getCvFiles();   }
+
     public int maxSalary(){
-       int max=0;
+        int max=0;
         List<Offre_Emploi> offers =  offreRepo.findAll();
         for(Offre_Emploi off:offers){
             if(off.getSalary()>max)
                 max=off.getSalary();
         }
 
-            return max;
+        return max;
     }
 
 
@@ -76,8 +76,8 @@ public class OffreService {
 
     public List<Offre_Emploi> offreSalaryRange( int min , int max){
         List<Offre_Emploi> offers =  offreRepo.findAll();
-      List<Offre_Emploi> result=  offers.stream().filter(off-> off.getSalary()>=min && off.getSalary() <= max).collect(Collectors.toList());
+        List<Offre_Emploi> result=  offers.stream().filter(off-> off.getSalary()>=min && off.getSalary() <= max).collect(Collectors.toList());
 
-    return result;
+        return result;
     }
 }
