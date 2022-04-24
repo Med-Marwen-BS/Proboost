@@ -41,7 +41,7 @@ public class User implements UserDetails {
     private Boolean enabled= false;
 
     @Enumerated(EnumType.STRING)
-    private Role role;
+    private Role role=Role.USER;
 
     @Column(nullable = true)
     @OneToMany(mappedBy = "candidat", cascade = CascadeType.REMOVE)
