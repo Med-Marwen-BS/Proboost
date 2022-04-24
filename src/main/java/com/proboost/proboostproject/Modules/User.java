@@ -49,9 +49,17 @@ public class User {
     @JsonIgnore
     private List<QCM> qcmList=new ArrayList<>();
 
-
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "cv_id", referencedColumnName = "id")
     private cvFile cvfile;
+
+    @OneToMany(mappedBy = "recruter")
+    @JsonIgnore
+    private List<Interview> interviewsrecruter=new ArrayList<>();
+
+    @OneToMany(mappedBy = "candidat")
+    @JsonIgnore
+    private List<Interview> interviewscandidat=new ArrayList<>();
+
 
 }
