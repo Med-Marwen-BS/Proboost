@@ -4,6 +4,7 @@ import com.proboost.proboostproject.Modules.Interview;
 import com.proboost.proboostproject.Modules.User;
 import com.proboost.proboostproject.Services.InterviewService;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,6 +12,7 @@ import java.util.List;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/videochat")
+@Slf4j
 public class InterviewController {
 
     private InterviewService interviewService;
@@ -39,4 +41,15 @@ public class InterviewController {
         return interviewService.getuser(username);
     }
 
+    @GetMapping("/getcandidat/{id}")
+    public User getcandidat(@PathVariable("id") int id)
+    {
+        return interviewService.getcandidat(id);
+    }
+
+    @GetMapping("/setcandidat/{id}/{candidat_id}")
+    public void setcandidat(@PathVariable("id") int id,@PathVariable("candidat_id") int candidat_id)
+    {
+        interviewService.savecandidat(id,candidat_id);
+    }
 }

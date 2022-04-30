@@ -34,6 +34,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
       http.authorizeRequests().antMatchers("/login","/api/users/refresh_token","/api/v1/**").permitAll() ;
       http.authorizeRequests().antMatchers(HttpMethod.GET,"/offre").hasAnyAuthority("USER","ADMIN");
+        http.authorizeRequests().antMatchers(HttpMethod.GET,"/entretien").hasAnyAuthority("USER","ADMIN");
+        http.authorizeRequests().antMatchers(HttpMethod.POST,"/entretien").hasAnyAuthority("USER","ADMIN");
+        http.authorizeRequests().antMatchers(HttpMethod.DELETE,"/entretien").hasAnyAuthority("USER","ADMIN");
+        http.authorizeRequests().antMatchers(HttpMethod.POST,"/qcm").hasAnyAuthority("USER","ADMIN");
         http.authorizeRequests().antMatchers("/**").permitAll();
         http.authorizeRequests().anyRequest().authenticated();
         http.addFilter(new CustomAuthenticationFilter(authenticationManagerBean()));

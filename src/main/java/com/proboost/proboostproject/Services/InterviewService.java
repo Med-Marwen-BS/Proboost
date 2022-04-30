@@ -32,8 +32,22 @@ public class InterviewService {
         return interviewRepo.save(interview);
     }
 
-    public User getuser(String username)
+    public User getuser(String email)
     {
-        return userRepo.findAll().stream().filter(u -> u.getUsername().equals(username)).findFirst().get();
+        return userRepo.findAll().stream().filter(u -> u.getEmail().equals(email)).findFirst().get();
+    }
+
+    public User getcandidat(int id)
+    {
+        return interviewRepo.findById(id).get().getCandidat();
+    }
+
+    public void savecandidat(int id,int candidat_id)
+    {
+        User candidat=userRepo.findById(candidat_id).get();
+        Interview interview=interviewRepo.findById(id).get();
+        interview.setCandidat(candidat);
+        interviewRepo.save(interview);
+
     }
 }

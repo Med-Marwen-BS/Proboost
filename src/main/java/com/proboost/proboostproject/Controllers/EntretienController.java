@@ -12,6 +12,7 @@ import java.util.List;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/entretien")
+@CrossOrigin("*")
 public class EntretienController {
 
     private EntretienService entretienService;
@@ -29,9 +30,10 @@ public class EntretienController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public String delete(@PathVariable("id") int id)
+    public Entretien delete(@PathVariable("id") int id)
     {
-        return entretienService.delete(id);
+        entretienService.delete(id);
+        return new Entretien();
     }
 
     @PutMapping("/update/{id}")
