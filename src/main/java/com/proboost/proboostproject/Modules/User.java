@@ -1,6 +1,7 @@
 package com.proboost.proboostproject.Modules;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -69,11 +70,9 @@ public class User implements UserDetails {
     private cvFile cvfile;
 
     @OneToMany(mappedBy = "recruter")
-    @JsonIgnore
     private List<Interview> interviewsrecruter=new ArrayList<>();
 
     @OneToMany(mappedBy = "candidat")
-    @JsonIgnore
     private List<Interview> interviewscandidat=new ArrayList<>();
 
 
