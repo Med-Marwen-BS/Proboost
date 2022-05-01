@@ -7,13 +7,7 @@ import com.proboost.proboostproject.Services.QuestionService;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 
 @RestController
 @AllArgsConstructor
@@ -32,12 +26,9 @@ public class AnswerController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<String>  delete(@PathVariable("id")int id)
+    public String delete(@PathVariable("id")int id)
     {
-
-//        HttpHeaders headers = new HttpHeaders();
-//        headers.set("Access-Control-Allow-Origin","*");
-        return new ResponseEntity<String>(answerService.delete(id),HttpStatus.OK);
+        return answerService.delete(id);
     }
 
     @GetMapping("/get/{id}")
