@@ -50,4 +50,11 @@ public class InterviewService {
         interviewRepo.save(interview);
 
     }
+
+    public void finishchat(int id)
+    {
+        Interview interview=interviewRepo.findById(id).get();
+        interview.setFinished(true);
+        interviewRepo.save(interview);
+    }
 }

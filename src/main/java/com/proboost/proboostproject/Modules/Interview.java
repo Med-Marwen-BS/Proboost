@@ -26,6 +26,8 @@ public class Interview {
 
     private String code;
 
+    private Boolean finished;
+
     @ManyToOne
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private User recruter;

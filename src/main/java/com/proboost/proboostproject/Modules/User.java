@@ -75,6 +75,8 @@ public class User implements UserDetails {
     @OneToMany(mappedBy = "candidat")
     private List<Interview> interviewscandidat=new ArrayList<>();
 
+    @OneToMany(mappedBy = "user")
+    private List<Alerts> alerts=new ArrayList<>();
 
 
     public User(String prenom, String nom,

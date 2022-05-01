@@ -52,4 +52,10 @@ public class InterviewController {
     {
         interviewService.savecandidat(id,candidat_id);
     }
+
+    @GetMapping("/finishchat/{id}")
+    public void finishchat(@PathVariable("id") int id)
+    {
+        interviewService.finishchat(id);
+    }
 }
