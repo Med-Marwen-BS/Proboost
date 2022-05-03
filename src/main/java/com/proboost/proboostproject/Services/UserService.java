@@ -82,7 +82,8 @@ public class UserService implements UserDetailsService {
                 .encode(appUser.getPassword());
 
       // appUser.setPassword(encodedPassword);
-        User test = new User(appUser.getPrenom(),appUser.getNom(), appUser.getEmail(), encodedPassword, Role.USER);
+        System.out.println("Role = "+appUser.getRole());
+        User test = new User(appUser.getPrenom(),appUser.getNom(), appUser.getEmail(), encodedPassword, appUser.getRole());
        // test.setPassword(encodedPassword);
         userRepo.save(test);
 //

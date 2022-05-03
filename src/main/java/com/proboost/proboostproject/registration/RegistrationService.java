@@ -33,16 +33,33 @@ public class RegistrationService {
             throw new IllegalStateException("email not valid");
         }
 
-        String token = appUserService.signUpUser(
-                new User(
-                        request.getFirstName(),
-                        request.getLastName(),
-                        request.getEmail(),
-                        request.getPassword(),
-                        Role.USER
+        System.out.println("Role angular = "+request.getRole());
+        String token ;
+        if(request.getRole().equals("EMPLOYER")){
+             token = appUserService.signUpUser(
+                    new User(
+                            request.getFirstName(),
+                            request.getLastName(),
+                            request.getEmail(),
+                            request.getPassword(),
+                            Role.EMPLOYER
 
-                )
-        );
+                    )
+            );
+        }else {
+             token = appUserService.signUpUser(
+                    new User(
+                            request.getFirstName(),
+                            request.getLastName(),
+                            request.getEmail(),
+                            request.getPassword(),
+                            Role.USER
+
+                    )
+            );
+        }
+
+
 //
         String link = "http://localhost:3000/api/v1/registration/confirm?token=" + token;
         emailSender.send(
