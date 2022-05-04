@@ -1,5 +1,6 @@
 package com.proboost.proboostproject.Services;
 
+import ch.qos.logback.core.net.SyslogOutputStream;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
@@ -114,6 +115,11 @@ public class UserService implements UserDetailsService {
         return userRepo.findByEmail(username);
     }
     public List<User> getUsers(){
+        try {
+            return userRepo.findAll() ;
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
         return userRepo.findAll() ;
     }
 
@@ -130,5 +136,36 @@ public class UserService implements UserDetailsService {
             return userRepo.findByEmail(username).get();
         else throw new IllegalStateException("you need to login ");
     }
+
+
+    public User toAdmin(int id){
+        User user = userRepo.getById(id);
+        user.setRole(Role.ADMIN);
+
+        return userRepo.saveAndFlush(user);
+    }
+    public User toUser(int id){
+        User user = userRepo.getById(id);
+        user.setRole(Role.USER);
+
+        return userRepo.saveAndFlush(user);
+    }
+
+    public User toEMployer(int id){
+        User user = userRepo.getById(id);
+        user.setRole(Role.EMPLOYER);
+
+        return userRepo.saveAndFlush(user);
+    }
+
+    public User locked(int id){
+        User user = userRepo.getById(id);
+        if(user.getLocked())
+            user.setLocked(false);
+        else user.setLocked(true);
+
+        return userRepo.saveAndFlush(user);
+    }
+
 
 }

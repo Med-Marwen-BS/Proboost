@@ -96,4 +96,23 @@ public class UserController {
          System.out.println("header = "+token);
          return new ResponseEntity<User>(userService.getCurrentUser(token), HttpStatus.OK);
      }
+
+     @PostMapping("/toadmin/{id}")
+    public User toAdmin(@PathVariable("id") int id){
+            return userService.toAdmin(id);
+     }
+
+    @PostMapping("/touser/{id}")
+    public User toUser(@PathVariable("id") int id){
+        return userService.toUser(id);
+    }
+    @PostMapping("/toemployer/{id}")
+    public User toEmployer(@PathVariable("id") int id){
+        return userService.toEMployer(id);
+    }
+
+    @PostMapping("/locked/{id}")
+    public User locked(@PathVariable("id") int id){
+        return userService.locked(id);
+    }
 }
