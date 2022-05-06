@@ -1,5 +1,6 @@
 package com.proboost.proboostproject.Controllers;
 
+import com.proboost.proboostproject.Modules.Entretien;
 import com.proboost.proboostproject.Modules.QCM;
 import com.proboost.proboostproject.Services.QCMService;
 import lombok.AllArgsConstructor;
@@ -54,5 +55,11 @@ public class QCMController {
     public Integer getnumberquestions(@PathVariable("id")int id)
     {
         return qcmService.getnumberquestions(id);
+    }
+
+    @PostMapping("/addentretien/{id}")
+    public QCM addentretien(@PathVariable("id")int id, @RequestBody Entretien entretien)
+    {
+        return qcmService.addentretien(id, entretien);
     }
 }

@@ -1,6 +1,8 @@
 package com.proboost.proboostproject.Modules;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -18,5 +20,6 @@ public class Alerts {
     private Boolean opened;
 
     @ManyToOne
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private User user;
 }

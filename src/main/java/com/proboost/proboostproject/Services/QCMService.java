@@ -1,9 +1,12 @@
 package com.proboost.proboostproject.Services;
 
+import com.proboost.proboostproject.Modules.Entretien;
 import com.proboost.proboostproject.Modules.QCM;
 import com.proboost.proboostproject.Modules.Question;
+import com.proboost.proboostproject.Respositories.EntretienRepo;
 import com.proboost.proboostproject.Respositories.QCMRepo;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,9 +14,12 @@ import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
+@Slf4j
 public class QCMService {
 
     private QCMRepo qcmRepo;
+
+    private EntretienRepo entretienRepo;
 
     public QCM save(QCM qcm)
     {
@@ -59,5 +65,16 @@ public class QCMService {
     public int getnumberquestions(int id)
     {
         return qcmRepo.findById(id).get().getQuestions().size();
+    }
+
+    public QCM addentretien(int id,Entretien entretien)
+    {
+        QCM qcm=qcmRepo.findById(id).get();
+        entretien=entretienRepo.findById(entretien.getId()).get();
+        log.info(String.valueOf(entretien.getId()));
+        qcm.getEntretiens().add(entretien);
+        entretien.getQcm().add(qcm);
+        entretienRepo.save(entretien);
+        return qcmRepo.save(qcm);
     }
 }
