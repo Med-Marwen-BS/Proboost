@@ -57,9 +57,9 @@ public class QCMController {
         return qcmService.getnumberquestions(id);
     }
 
-    @PostMapping("/addentretien/{id}")
-    public QCM addentretien(@PathVariable("id")int id, @RequestBody Entretien entretien)
+    @GetMapping("/addentretien/{id}/{entretien_id}")
+    public QCM addentretien(@PathVariable("id")int id, @PathVariable("entretien_id") int entretien_id)
     {
-        return qcmService.addentretien(id, entretien);
+        return qcmService.addentretien(id, entretien_id);
     }
 }

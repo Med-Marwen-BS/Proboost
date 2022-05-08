@@ -49,4 +49,7 @@ public class Entretien {
     @OneToMany(mappedBy = "entretien")
     @JsonIgnore
     private List<Cheaters> cheaters=new ArrayList<>();
+
+    @OneToMany(mappedBy = "entretien")
+    private List<Alerts> alerts=new ArrayList<>();
 }

@@ -67,10 +67,10 @@ public class QCMService {
         return qcmRepo.findById(id).get().getQuestions().size();
     }
 
-    public QCM addentretien(int id,Entretien entretien)
+    public QCM addentretien(int id,int entretien_id)
     {
         QCM qcm=qcmRepo.findById(id).get();
-        entretien=entretienRepo.findById(entretien.getId()).get();
+        Entretien entretien=entretienRepo.findById(entretien_id).get();
         log.info(String.valueOf(entretien.getId()));
         qcm.getEntretiens().add(entretien);
         entretien.getQcm().add(qcm);
