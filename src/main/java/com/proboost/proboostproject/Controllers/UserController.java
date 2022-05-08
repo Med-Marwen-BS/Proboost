@@ -10,7 +10,9 @@ import com.proboost.proboostproject.Modules.Role;
 import com.proboost.proboostproject.Modules.User;
 import com.proboost.proboostproject.Services.UserService;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.apache.tomcat.jni.Local;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -23,6 +25,7 @@ import javax.jws.soap.SOAPBinding;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -115,4 +118,32 @@ public class UserController {
     public User locked(@PathVariable("id") int id){
         return userService.locked(id);
     }
+
+    @PutMapping("/update")
+    public User update(@RequestBody updateUserBody user){
+        User user1 = new User() ;
+         if(userService.getUser(user.getEmail()).isPresent())
+         user1 = userService.getUser(user.getEmail()).get();
+         else{ throw new IllegalStateException("exception");}
+
+         if (!user.getNom().equals(user1.getNom())){
+             user1.setNom(user.getNom());
+         }
+        if (!user.getPrenom().equals(user1.getPrenom())){
+            user1.setPrenom(user.getPrenom());
+        }
+        if (!user.getNaissance().equals(user1.getNaissance())){
+            user1.setNaissance(user.getNaissance());
+        }
+        return userService.update(user1);
+    }
+}
+
+@Data
+class updateUserBody {
+    private int id ;
+    private String email ;
+    private String nom ;
+    private String prenom ;
+    private LocalDate naissance ;
 }

@@ -167,5 +167,28 @@ public class UserService implements UserDetailsService {
         return userRepo.saveAndFlush(user);
     }
 
+    public User update(User user){
+
+        return userRepo.save(user);
+    }
+
+    public User update1(User user){
+        User user1 = userRepo.getById(user.getId());
+        if(user1.getNaissance() != user.getNaissance()){
+            user1.setNaissance(user.getNaissance()) ;
+        }
+        if(!user1.getNom().equals( user.getNom())){
+            user1.setNom(user.getNom()) ;
+        }
+        if(!user1.getPrenom().equals( user.getPrenom())){
+            user1.setPrenom(user.getPrenom()) ;
+        }
+        if(!user1.getPassword().equals( user.getPassword())){
+            user1.setPassword(user.getPassword()); ;
+        }
+        userRepo.save(user1);
+        return user1;
+    }
+
 
 }
