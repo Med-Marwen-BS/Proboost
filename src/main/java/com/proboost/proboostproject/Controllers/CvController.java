@@ -37,11 +37,11 @@ public class CvController {
     }
 
 
-    @PostMapping("/upload/{id}")
-    public ResponseData uploadFile(@RequestParam("file")MultipartFile file , @PathVariable("id") int id ) throws Exception {
+    @PostMapping("/upload/{id}/{userid}")
+    public ResponseData uploadFile(@RequestParam("file")MultipartFile file , @PathVariable("id") int id , @PathVariable("userid") int userid) throws Exception {
         cvFile attachment = null;
         String downloadURl = "";
-        attachment = cvservice.saveFile(file,id);
+        attachment = cvservice.saveFile(file,id,userid);
         downloadURl = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path("/download/")
                 .path(attachment.getId())

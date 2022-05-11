@@ -65,8 +65,7 @@ public class User implements UserDetails {
     @JsonIgnore
     private List<QCM> qcmList=new ArrayList<>();
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "cv_id", referencedColumnName = "id")
+    @OneToOne(mappedBy = "user")
     private cvFile cvfile;
 
     @OneToMany(mappedBy = "recruter")

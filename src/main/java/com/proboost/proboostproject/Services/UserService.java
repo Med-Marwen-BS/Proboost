@@ -191,4 +191,8 @@ public class UserService implements UserDetailsService {
     }
 
 
+    public User getUser(int id){
+        return userRepo.findById(id).get();
+    }
+
 }

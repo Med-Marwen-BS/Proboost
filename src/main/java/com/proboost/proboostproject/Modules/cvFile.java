@@ -22,7 +22,9 @@ public class cvFile {
     private Offre_Emploi offre;
 
 
-    @OneToOne(mappedBy = "cvfile")
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 
     public cvFile() {
@@ -39,6 +41,14 @@ public class cvFile {
         this.fileType = fileType;
         this.data = data;
         this.offre = offre;
+    }
+
+    public cvFile( String fileName, String fileType, byte[] data, Offre_Emploi offre, User user) {
+        this.fileName = fileName;
+        this.fileType = fileType;
+        this.data = data;
+        this.offre = offre;
+        this.user = user;
     }
 
     public String getId() {

@@ -7,6 +7,7 @@ import java.util.stream.Stream;
 
 import com.proboost.proboostproject.Modules.cvFile;
 import com.proboost.proboostproject.Respositories.CvRepo;
+import com.proboost.proboostproject.Respositories.UserRepo;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,17 +34,20 @@ public class CvService {
     @Autowired
     private CvRepo cvrepo;
     private OffreService offreService;
+    private UserService userService;
 
 
-    public CvService(CvRepo cvrepo ,OffreService offreService) {
+
+    public CvService(CvRepo cvrepo ,OffreService offreService , UserService userService) {
         this.cvrepo = cvrepo;
         this.offreService=offreService;
+        this.userService=userService;
     }
 
 
 
 
-    public cvFile saveFile(MultipartFile file , int id) throws Exception {
+    public cvFile saveFile(MultipartFile file , int id , int userid ) throws Exception {
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
         try {
             if(fileName.contains("..")) {
@@ -55,7 +59,8 @@ public class CvService {
                     = new cvFile(fileName,
                     file.getContentType(),
                     file.getBytes(),
-                    offreService.getOffre(id)
+                    offreService.getOffre(id),
+                    userService.getUser(userid)
 
             );
             return cvrepo.save(attachment);
