@@ -65,6 +65,7 @@ public class User implements UserDetails {
     @JsonIgnore
     private List<QCM> qcmList=new ArrayList<>();
 
+    @Transient
     @OneToOne(mappedBy = "user")
     private cvFile cvfile;
 

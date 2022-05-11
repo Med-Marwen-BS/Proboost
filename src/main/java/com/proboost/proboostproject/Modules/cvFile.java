@@ -23,8 +23,8 @@ public class cvFile {
 
 
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @OneToOne(cascade = CascadeType.ALL , orphanRemoval = true , fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", referencedColumnName = "id" )
     private User user;
 
     public cvFile() {
