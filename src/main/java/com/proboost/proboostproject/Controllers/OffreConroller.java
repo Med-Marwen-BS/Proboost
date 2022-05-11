@@ -18,10 +18,10 @@ public class OffreConroller {
 
     private OffreService offreService;
 
-    @PostMapping("/add")
-    public Offre_Emploi add(@RequestBody Offre_Emploi offreEmploi)
+    @PostMapping("/add/{id}")
+    public Offre_Emploi add(@RequestBody Offre_Emploi offreEmploi , @PathVariable("id") int id)
     {
-        return offreService.add(offreEmploi);
+       return   offreService.add(offreEmploi,id);
     }
 
     @GetMapping("/all")

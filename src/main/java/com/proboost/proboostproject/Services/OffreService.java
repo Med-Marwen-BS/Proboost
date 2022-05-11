@@ -1,8 +1,10 @@
 package com.proboost.proboostproject.Services;
 
 import com.proboost.proboostproject.Modules.Offre_Emploi;
+import com.proboost.proboostproject.Modules.User;
 import com.proboost.proboostproject.Modules.cvFile;
 import com.proboost.proboostproject.Respositories.OffreRepo;
+import com.proboost.proboostproject.Respositories.UserRepo;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -15,10 +17,17 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class OffreService {
 
-    private OffreRepo offreRepo;
+    private  OffreRepo offreRepo;
 
-    public Offre_Emploi add(Offre_Emploi offreEmploi)
+    private UserRepo userRepo;
+
+
+
+    public Offre_Emploi add(Offre_Emploi offreEmploi , int id)
     {
+        User currentuser=userRepo.findById(id).orElse(null);
+        offreEmploi.setRecruteur(currentuser);
+
         offreEmploi.setPostedDate(LocalDate.now());
         return offreRepo.save(offreEmploi);
     }
