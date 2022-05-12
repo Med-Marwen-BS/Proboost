@@ -44,10 +44,10 @@ public class OffreConroller {
     }
 
     //    public Offre_Emploi update(@RequestBody Offre_Emploi offreEmploi){return offreService.update(offreEmploi);}
-    @PutMapping("")
-    public Offre_Emploi update(@RequestBody Offre_Emploi offreEmploi)
+    @PutMapping("/{userid}")
+    public Offre_Emploi update(@RequestBody Offre_Emploi offreEmploi , @PathVariable("userid") int userid)
     {
-        return offreService.update(offreEmploi);
+        return offreService.update(offreEmploi, userid);
     }
 
 

@@ -51,8 +51,10 @@ public class OffreService {
 
 
 
-    public Offre_Emploi update(Offre_Emploi offreEmploi)
+    public Offre_Emploi update(Offre_Emploi offreEmploi , int userid)
     {
+        User currentuser=userRepo.findById(userid).orElse(null);
+        offreEmploi.setRecruteur(currentuser);
         return offreRepo.save(offreEmploi);
     }
 
