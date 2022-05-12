@@ -2,6 +2,7 @@ package com.proboost.proboostproject.Modules;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.proboost.proboostproject.Image.ImageModel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -68,6 +69,9 @@ public class User implements UserDetails {
     @Transient
     @OneToOne(mappedBy = "user")
     private cvFile cvfile;
+
+    @OneToOne(mappedBy = "user")
+    private ImageModel image;
 
     @OneToMany(mappedBy = "recruter")
     private List<Interview> interviewsrecruter=new ArrayList<>();
