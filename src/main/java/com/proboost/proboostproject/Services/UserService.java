@@ -114,6 +114,7 @@ public class UserService implements UserDetailsService {
     public Optional<User> getUser(String username) {
         return userRepo.findByEmail(username);
     }
+
     public List<User> getUsers(){
         try {
             return userRepo.findAll() ;

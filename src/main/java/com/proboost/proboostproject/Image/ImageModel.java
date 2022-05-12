@@ -1,11 +1,14 @@
 package com.proboost.proboostproject.Image;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.proboost.proboostproject.Modules.User;
+import lombok.Data;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "image_table")
+@Data
 public class ImageModel {
 
     public ImageModel() {
@@ -16,6 +19,7 @@ public class ImageModel {
         this.name = name;
         this.type = type;
         this.picByte = picByte;
+       // this.user = user ;
     }
 
     @Id
@@ -34,10 +38,7 @@ public class ImageModel {
     @Column(name = "picByte", length = 1000)
     private byte[] picByte;
 
-
-    @OneToOne(cascade = CascadeType.ALL , orphanRemoval = true , fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", referencedColumnName = "id" )
-    private User user ;
+ 
 
     public String getName() {
         return name;

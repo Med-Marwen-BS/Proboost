@@ -6,6 +6,7 @@ import com.proboost.proboostproject.Image.ImageModel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.lang.Nullable;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -41,6 +42,7 @@ public class User implements UserDetails {
     private LocalDate naissance;
     private Boolean locked = false;
     private Boolean enabled= false;
+    private Long  image;
 
     @Enumerated(EnumType.STRING)
     private Role role=Role.USER;
@@ -70,8 +72,7 @@ public class User implements UserDetails {
     @OneToOne(mappedBy = "user")
     private cvFile cvfile;
 
-    @OneToOne(mappedBy = "user")
-    private ImageModel image;
+
 
     @OneToMany(mappedBy = "recruter")
     private List<Interview> interviewsrecruter=new ArrayList<>();
